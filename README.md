@@ -36,4 +36,6 @@ graph TD
     C --> D[Lambda Function]
     D --> E[Parameter Store]
     D --> F[OpenWeather API]
-
+````
+## Setup Instructions
+- 
