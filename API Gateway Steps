@@ -1,0 +1,98 @@
+Here's a step-by-step guide to properly configure API Gateway for your weather app:
+
+1. Create API Gateway
+Go to API Gateway Console
+
+Click Create API → REST API → Build
+
+Choose:
+
+Protocol: REST
+
+Create new API: New API
+
+API name: WeatherAPI
+
+Description: (optional)
+
+Endpoint Type: Regional
+
+2. Create Resource and Method
+In Resources panel:
+
+Actions → Create Resource
+
+Resource Name: weather
+
+Resource Path: weather
+
+Enable API Gateway CORS: Yes
+
+Click Create Resource
+
+With /weather selected:
+
+Actions → Create Method
+
+Choose GET from dropdown → click checkmark
+
+Setup:
+
+Integration type: Lambda Function
+
+Lambda Region: (match your region)
+
+Lambda Function: (select your Lambda)
+
+Use Default Timeout: Yes
+
+Click Save → OK for permissions dialog
+
+3. Configure Method Request
+In GET method panel:
+
+Click Method Request
+
+URL Query String Parameters:
+
+Add city parameter
+
+Check Required
+
+Request Validator: "Validate query string parameters and headers"
+
+4. Enable CORS
+Select /weather resource
+
+Actions → Enable CORS
+
+Configure:
+
+Access-Control-Allow-Origin: *
+
+Access-Control-Allow-Methods: GET
+
+Access-Control-Allow-Headers: Content-Type,X-Amz-Date,Authorization
+
+Keep other defaults
+
+Click Enable CORS and replace existing CORS headers
+
+5. Deploy API
+Actions → Deploy API
+
+Create new deployment stage:
+
+Deployment stage: [New Stage]
+
+Stage name: prod
+
+Click Deploy
+
+6. Get Invocation URL
+After deployment:
+
+Note the Invoke URL (format: https://{api-id}.execute-api.{region}.amazonaws.com/prod)
+
+Your full endpoint will be:
+https://{api-id}.execute-api.{region}.amazonaws.com/prod/weather?city={city}
